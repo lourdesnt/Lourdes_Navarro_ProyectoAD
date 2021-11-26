@@ -2,9 +2,11 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
+import classes.Track;
 
 public class GestorConexion {
 
@@ -67,11 +69,29 @@ public class GestorConexion {
 		}
 	}
 	
-	public void insertarTrack(){
+	public void insertarTrack(Track t){
         try{
-            conn.setAutoCommit(false);
+        	conn.setAutoCommit(false);
             Statement sta = conn.createStatement();
-            sta.executeUpdate("INSERT INTO Track " + "VALUES ()");
+            sta.executeUpdate("INSERT INTO Track " + "VALUES ('"
+            			+t.getTrackURI()+"','"
+            			+t.getTrackName()+"','"
+            			+t.getArtistURIs()+"','"
+            			+t.getArtistNames()+"','"
+            			+t.getAlbumURI()+"','"
+            			+t.getAlbumName()+"','"
+            			+t.getAlbumArtistURIs()+"','"
+            			+t.getAlbumArtistNames()+"','"
+            			+t.getAlbumReleaseDate()+"','"
+            			+t.getAlbumImageURL()+"','"
+            			+t.getDiscNumber()+"','"
+            			+t.getTrackNumber()+"','"
+            			+t.getTrackDuration()+"','"
+            			+t.getTrackPreviewURL()+"','"
+            			+t.getExplicit()+"','"
+            			+t.getPopularity()+"','"
+            			+t.getAddedBy()+"','"
+            			+t.getAddedAt()+"')");
             conn.commit();
         } catch(SQLException ex){
             System.out.println("ERROR: no se ha realizado la insercción correctamente");
@@ -83,4 +103,12 @@ public class GestorConexion {
             ex.printStackTrace();
         }
     }
+	
+	public void insertarTracks(List<Track> playlist){
+        for(Track t : playlist) {
+        	insertarTrack(t);
+        }
+    }
+	
+	
 }
