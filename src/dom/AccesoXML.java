@@ -263,15 +263,15 @@ public class AccesoXML {
 			NodeList canciones = doc.getElementsByTagName("track");
 			for (int i = 0; i < canciones.getLength(); i++) {
 				Element track = (Element) canciones.item(i);
-				if (track.getElementsByTagName("TrackName").item(0).getTextContent().equals(trackName)) {
+				if (track.getElementsByTagName("TrackName").item(0).getTextContent().equals(trackName)
+						&& playlist.stream().anyMatch(tr -> tr.getTrackName().equals(trackName))) {
 					track.getParentNode().removeChild(track);
 					playlist.removeIf(t -> t.getTrackName().equals(trackName));
-				} else {
-					System.out.println("No existe la canción");
-					return -1;
+					return 0;
 				}
 			}
-			return 0;
+			System.out.println("No existe la canción");
+			return -1;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -306,12 +306,12 @@ public class AccesoXML {
 
 					playlist.removeIf(tr -> tr.getTrackName().equals(trackName));
 					playlist.add(track);
-				} else {
-					System.out.println("No existe la canción");
-					return -1;
+					
+					return 0;
 				}
 			}
-			return 0;
+			System.out.println("No existe la canción");
+			return -1;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
