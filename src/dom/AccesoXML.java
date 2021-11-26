@@ -18,6 +18,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 import classes.Track;
 
 public class AccesoXML {
@@ -264,6 +266,9 @@ public class AccesoXML {
 				if (track.getElementsByTagName("TrackName").item(0).getTextContent().equals(trackName)) {
 					track.getParentNode().removeChild(track);
 					playlist.removeIf(t -> t.getTrackName().equals(trackName));
+				} else {
+					System.out.println("No existe la canción");
+					return -1;
 				}
 			}
 			return 0;
@@ -278,7 +283,8 @@ public class AccesoXML {
 			NodeList canciones = doc.getElementsByTagName("track");
 			for (int i = 0; i < canciones.getLength(); i++) {
 				Element t = (Element) canciones.item(i);
-				if (t.getElementsByTagName("TrackName").item(0).getTextContent().equals(trackName)) {
+				if (t.getElementsByTagName("TrackName").item(0).getTextContent().equals(trackName)
+						&& playlist.stream().anyMatch(tr -> tr.getTrackName().equals(trackName))) {
 					t.getElementsByTagName("TrackURI").item(0).setTextContent(track.getTrackURI());
 					t.getElementsByTagName("TrackName").item(0).setTextContent(track.getTrackName());
 					t.getElementsByTagName("ArtistURIs").item(0).setTextContent(track.getArtistURIs());
@@ -297,6 +303,12 @@ public class AccesoXML {
 					t.getElementsByTagName("Popularity").item(0).setTextContent(track.getPopularity());
 					t.getElementsByTagName("AddedBy").item(0).setTextContent(track.getAddedBy());
 					t.getElementsByTagName("AddedAt").item(0).setTextContent(track.getAddedAt());
+
+					playlist.removeIf(tr -> tr.getTrackName().equals(trackName));
+					playlist.add(track);
+				} else {
+					System.out.println("No existe la canción");
+					return -1;
 				}
 			}
 			return 0;
