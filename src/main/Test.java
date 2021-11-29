@@ -20,6 +20,14 @@ public class Test {
 				"https://p.scdn.co/mp3-preview/9aed324f09bb71798f1f0943dcsjfhds38b8?cid=9950ac751e34487dbbe027c4fd7f8e99",
 				"true", "70", "spotify:user:lysun", "2021-11-23T18:36:15Z");
 		dom.aniadirDOM(track);
+		Track newTrack = new Track("spotify:track:3aPGTMB6sFfDYQ3YvSabc1", "Darkness",
+				"spotify:artist:7dGJo4pcD2V6oG8kP0tJRR", "Eminem", "spotify:album:5t7953yu6zYf5A543XRiCH", "Music To Be Murdered By",
+				" spotify:artist:7dGJo4pcD2V6oG8kP0tJRR", "Eminem", "2020-01-17",
+				"https://i.scdn.co/image/bc67616d0000b273dbb3dd83da45b7d7f13b1b43", "10", "8", "60900",
+				"https://p.scdn.co/mp3-preview/9aed324f09bb71798f1f0943dcsjfhds38b8?cid=9950ac751e34487dbbe027c4fd7f8e99",
+				"true", "70", "spotify:user:lysun", "2021-11-23T18:36:15Z");
+		dom.modificarTrack("Venom", newTrack);
+		dom.eliminarTrack("Darkness");
 		String datos = dom.recorrerDOM();
 		dom.writeXML();
 		System.out.println(datos);
