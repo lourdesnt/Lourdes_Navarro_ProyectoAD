@@ -175,6 +175,28 @@ public class Track {
 	public void setAddedAt(String addedAt) {
 		this.addedAt = addedAt;
 	}
+
+	@Override
+	public String toString() {
+		return "TrackURI: " + trackURI
+				+ "\nTrackName: " + trackName
+				+ "\nArtistURIs: " + artistURIs
+				+ "\nArtistNames: " + artistNames
+				+ "\nAlbumURI: " + albumURI
+				+ "\nAlbumName: " + albumName
+				+ "\nAlbumArtistURIs: " + albumArtistURIs
+				+ "\nAlbumArtistNames: " + albumArtistNames
+				+ "\nAlbumReleaseDate: " + albumReleaseDate
+				+ "\nAlbumImageURL: " + albumImageURL
+				+ "\nDiscNumber: " + discNumber
+				+ "\nTrackNumber: " + trackNumber
+				+ "\nTrackDuration: " + trackDuration
+				+ "\nTrackPreviewURL: " + trackPreviewURL
+				+ "\nExplicit: " + explicit
+				+ "\nPopularity: " + popularity
+				+ "\nAddedBy: " + addedBy
+				+ "\nAddedAt: " + addedAt;
+	}
 	
 	
 
