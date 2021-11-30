@@ -22,14 +22,26 @@ import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import classes.Track;
 
+/**
+ * Clase que implemente diferentes metodos para el manejo de datos de un documento XML a traves de DOM
+ * 
+ * @author Lourdes Navarro Tocon
+ *
+ */
 public class AccesoXML {
 
 	Document doc;
 
-	List<Track> playlist;
+	public List<Track> playlist;
+	
+	
+
+	public AccesoXML() {
+		playlist = new ArrayList<Track>();
+	}
 
 	/**
-	 * Este método genera el árbol DOM de un documento XML
+	 * Metodo que genera el árbol DOM del XML
 	 * 
 	 * @param fichero Fichero XML al que vamos a acceder
 	 * @return 0 si se ha realizado con éxito, -1 si ha habido algún fallo
@@ -57,16 +69,14 @@ public class AccesoXML {
 	}
 
 	/**
-	 * Método que recorre el documento XML
+	 * Metodo que recorre el documento XML
 	 * 
-	 * @return
+	 * @return datos del XML
 	 */
 	public String recorrerDOM() {
 		String[] datosNodos = null;
 		String salida = "";
 		Node node;
-
-		playlist = new ArrayList<>();
 
 		Node raiz = doc.getFirstChild();
 
@@ -99,25 +109,30 @@ public class AccesoXML {
 				t.setPopularity(datosNodos[15]);
 				t.setAddedBy(datosNodos[16]);
 				t.setAddedAt(datosNodos[17]);
+				
+				playlist.add(t);
 
-				salida = salida + "\n " + "TrackURI: " + datosNodos[0];
-				salida = salida + "\n " + "TrackName: " + datosNodos[1];
-				salida = salida + "\n " + "ArtistURIs: " + datosNodos[2];
-				salida = salida + "\n " + "ArtistNames: " + datosNodos[3];
-				salida = salida + "\n " + "AlbumURI: " + datosNodos[4];
-				salida = salida + "\n " + "AlbumName: " + datosNodos[5];
-				salida = salida + "\n " + "AlbumArtistURIs: " + datosNodos[6];
-				salida = salida + "\n " + "AlbumArtistNames: " + datosNodos[7];
-				salida = salida + "\n " + "AlbumReleaseDate: " + datosNodos[8];
-				salida = salida + "\n " + "AlbumImageURL: " + datosNodos[9];
-				salida = salida + "\n " + "DiscNumber: " + datosNodos[10];
-				salida = salida + "\n " + "TrackNumber: " + datosNodos[11];
-				salida = salida + "\n " + "TrackDuration: " + datosNodos[12];
-				salida = salida + "\n " + "TrackPreviewURL: " + datosNodos[13];
-				salida = salida + "\n " + "Explicit: " + datosNodos[14];
-				salida = salida + "\n " + "Popularity: " + datosNodos[15];
-				salida = salida + "\n " + "AddedBy: " + datosNodos[16];
-				salida = salida + "\n " + "AddedAt: " + datosNodos[17];
+//				salida = salida + "\n " + "TrackURI: " + datosNodos[0];
+//				salida = salida + "\n " + "TrackName: " + datosNodos[1];
+//				salida = salida + "\n " + "ArtistURIs: " + datosNodos[2];
+//				salida = salida + "\n " + "ArtistNames: " + datosNodos[3];
+//				salida = salida + "\n " + "AlbumURI: " + datosNodos[4];
+//				salida = salida + "\n " + "AlbumName: " + datosNodos[5];
+//				salida = salida + "\n " + "AlbumArtistURIs: " + datosNodos[6];
+//				salida = salida + "\n " + "AlbumArtistNames: " + datosNodos[7];
+//				salida = salida + "\n " + "AlbumReleaseDate: " + datosNodos[8];
+//				salida = salida + "\n " + "AlbumImageURL: " + datosNodos[9];
+//				salida = salida + "\n " + "DiscNumber: " + datosNodos[10];
+//				salida = salida + "\n " + "TrackNumber: " + datosNodos[11];
+//				salida = salida + "\n " + "TrackDuration: " + datosNodos[12];
+//				salida = salida + "\n " + "TrackPreviewURL: " + datosNodos[13];
+//				salida = salida + "\n " + "Explicit: " + datosNodos[14];
+//				salida = salida + "\n " + "Popularity: " + datosNodos[15];
+//				salida = salida + "\n " + "AddedBy: " + datosNodos[16];
+//				salida = salida + "\n " + "AddedAt: " + datosNodos[17];
+//				salida = salida + "\n ------------------------------------------";
+				
+				salida = salida + "\n"+t.toString();
 				salida = salida + "\n ------------------------------------------";
 			}
 		}
@@ -125,7 +140,7 @@ public class AccesoXML {
 	}
 
 	/**
-	 * Método que procesa el documento XML
+	 * Metodo que procesa el documento XML
 	 * 
 	 * @param node Nodo del XML
 	 * @return Nodos del XML
@@ -148,6 +163,12 @@ public class AccesoXML {
 		return datos;
 	}
 
+	/**
+	 * Metodo para añadir una nueva track al documento XML
+	 * @param doc XML
+	 * @param track Track a añadir
+	 * @return 0 si se ha realizado con exito, -1 si ha habido algun fallo
+	 */
 	private int aniadirDOM(Document doc, Track track) {
 		try {
 			Node ntrack = doc.createElement("track");
@@ -254,10 +275,20 @@ public class AccesoXML {
 		}
 	}
 
+	/**
+	 * Metodo para añadir una nueva track al documento XML
+	 * @param track Track a añadir
+	 * @return 0 si se ha realizado con exito, -1 si ha habido algun fallo
+	 */
 	public int aniadirDOM(Track track) {
 		return aniadirDOM(doc, track);
 	}
 
+	/**
+	 * Metodo para eliminar una track del documento XML
+	 * @param trackName Nombre de la track
+	 * @return 0 si se ha realizado con exito, -1 si ha habido algun fallo
+	 */
 	public int eliminarTrack(String trackName) {
 		try {
 			NodeList canciones = doc.getElementsByTagName("track");
@@ -278,6 +309,12 @@ public class AccesoXML {
 		}
 	}
 
+	/**
+	 * Método para modificar una track del documento XML
+	 * @param trackName Nombre de la track a eliminar
+	 * @param track Track con los datos actualizados
+	 * @return 0 si se ha realizado con exito, -1 si ha habido algun fallo
+	 */
 	public int modificarTrack(String trackName, Track track) {
 		try {
 			NodeList canciones = doc.getElementsByTagName("track");
@@ -318,6 +355,9 @@ public class AccesoXML {
 		}
 	}
 
+	/**
+	 * Metodo para escribir un nuevo documento XML
+	 */
 	public void writeXML() {
 		try {
 
@@ -327,7 +367,7 @@ public class AccesoXML {
 
 			DOMSource domSource = new DOMSource(doc);
 
-			StreamResult streamResult = new StreamResult(new File("src/data/festival2DAMNew.xml"));
+			StreamResult streamResult = new StreamResult(new File("src/data/festival2DAMNew.xml")); //Si el nombre del XML fuese el mismo, sobreescribiria el ya existente
 
 			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");

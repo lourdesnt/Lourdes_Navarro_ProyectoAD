@@ -4,8 +4,9 @@ import java.io.File;
 
 import classes.Track;
 import dom.AccesoXML;
+import jdbc.GestorConexion;
 
-public class Test {
+public class TestDOM {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -31,9 +32,6 @@ public class Test {
 		String datos = dom.recorrerDOM();
 		dom.writeXML();
 		System.out.println(datos);
-		
-		
-
 	}
 
 }

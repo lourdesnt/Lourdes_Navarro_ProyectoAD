@@ -1,5 +1,4 @@
-/classes/
-/data/
-/dom/
-/jdbc/
 /main/
+/jdbc/
+/dom/
+/data/
