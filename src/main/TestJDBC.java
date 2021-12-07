@@ -6,6 +6,11 @@ import classes.Track;
 import dom.AccesoXML;
 import jdbc.GestorConexion;
 
+/**
+ * Clase Test donde probaremos los dintintos métodos para el manejo de datos en una base de datos con el conector JDBC
+ * @author Lourdes Navarro Tocon
+ *
+ */
 public class TestJDBC {
 
 	public static void main(String[] args) {

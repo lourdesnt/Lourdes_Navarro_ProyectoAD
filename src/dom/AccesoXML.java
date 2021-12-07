@@ -169,7 +169,7 @@ public class AccesoXML {
 	 * @param track Track a añadir
 	 * @return 0 si se ha realizado con exito, -1 si ha habido algun fallo
 	 */
-	private int aniadirDOM(Document doc, Track track) {
+	private int aniadirTrack(Document doc, Track track) {
 		try {
 			Node ntrack = doc.createElement("track");
 			Node raiz = doc.getFirstChild(); // es igual a Node raiz = doc.getChildNode().item(0);
@@ -280,8 +280,8 @@ public class AccesoXML {
 	 * @param track Track a añadir
 	 * @return 0 si se ha realizado con exito, -1 si ha habido algun fallo
 	 */
-	public int aniadirDOM(Track track) {
-		return aniadirDOM(doc, track);
+	public int aniadirTrack(Track track) {
+		return aniadirTrack(doc, track);
 	}
 
 	/**

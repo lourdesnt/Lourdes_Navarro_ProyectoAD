@@ -1,5 +1,11 @@
 package classes;
 
+/**
+ * Clase Track
+ * 
+ * @author Lourdes Navarro Tocón
+ *
+ */
 public class Track {
 	
 	private String trackURI, trackName, artistURIs, artistNames, albumURI, albumName, albumArtistURIs, albumArtistNames, albumReleaseDate, albumImageURL, discNumber, trackNumber, trackDuration, trackPreviewURL, explicit, popularity, addedBy, addedAt;
