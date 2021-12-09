@@ -112,26 +112,6 @@ public class AccesoXML {
 				
 				playlist.add(t);
 
-//				salida = salida + "\n " + "TrackURI: " + datosNodos[0];
-//				salida = salida + "\n " + "TrackName: " + datosNodos[1];
-//				salida = salida + "\n " + "ArtistURIs: " + datosNodos[2];
-//				salida = salida + "\n " + "ArtistNames: " + datosNodos[3];
-//				salida = salida + "\n " + "AlbumURI: " + datosNodos[4];
-//				salida = salida + "\n " + "AlbumName: " + datosNodos[5];
-//				salida = salida + "\n " + "AlbumArtistURIs: " + datosNodos[6];
-//				salida = salida + "\n " + "AlbumArtistNames: " + datosNodos[7];
-//				salida = salida + "\n " + "AlbumReleaseDate: " + datosNodos[8];
-//				salida = salida + "\n " + "AlbumImageURL: " + datosNodos[9];
-//				salida = salida + "\n " + "DiscNumber: " + datosNodos[10];
-//				salida = salida + "\n " + "TrackNumber: " + datosNodos[11];
-//				salida = salida + "\n " + "TrackDuration: " + datosNodos[12];
-//				salida = salida + "\n " + "TrackPreviewURL: " + datosNodos[13];
-//				salida = salida + "\n " + "Explicit: " + datosNodos[14];
-//				salida = salida + "\n " + "Popularity: " + datosNodos[15];
-//				salida = salida + "\n " + "AddedBy: " + datosNodos[16];
-//				salida = salida + "\n " + "AddedAt: " + datosNodos[17];
-//				salida = salida + "\n ------------------------------------------";
-				
 				salida = salida + "\n"+t.toString();
 				salida = salida + "\n ------------------------------------------";
 			}

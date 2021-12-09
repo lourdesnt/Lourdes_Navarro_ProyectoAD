@@ -38,7 +38,7 @@ public class MenuJDBC {
 			System.out.println("");
 
 			switch (opcion) {
-			case "0":
+			case "0": con.cerrarConexion();
 				break;
 			case "1": con.creacionTabla();
 				break;
